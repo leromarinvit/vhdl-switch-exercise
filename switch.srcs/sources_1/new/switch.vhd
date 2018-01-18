@@ -1,0 +1,110 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 01/17/2018 06:41:07 PM
+-- Design Name: 
+-- Module Name: switch - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+use work.switch_constants.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+package switch_types is
+    generic(
+        WIDTH: integer;
+        NUM_PORTS: integer
+    );
+    subtype word is std_logic_vector(WIDTH-1 downto 0);
+    type word_array is array (1 to NUM_PORTS) of word; 
+end package;
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+use work.switch_constants.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+use IEEE.NUMERIC_STD.ALL;
+
+entity switch is
+  generic (
+    --type word;
+    --type word_array;
+    WIDTH: integer;
+    NUM_OUTPUTS: integer;
+    PKT_LEN: integer;
+    PAUSE_LEN: integer
+  );
+  Port (
+    signal clk: in std_logic;
+    signal input: in std_logic_vector;
+    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
+    --signal outputs: out array of t(1 to NUM_OUTPUTS)
+    --signal outputs: out word_array
+  );
+end switch;
+
+architecture Behavioral of switch is
+    signal address: integer range 0 to 2 ** input'length;
+    signal listen: boolean := true;
+    constant MAX: integer := PKT_LEN + PAUSE_LEN;
+    signal remaining_bits: integer range 0 to MAX := MAX;
+begin
+
+    read_start: process(input)
+    begin
+        if input'event and listen and input /= std_logic_vector(to_unsigned(0, input'length)) then
+            address <= to_integer(unsigned(input));
+            listen <= false;
+        end if;
+    end process read_start;
+    
+    forward: process(input, clk)
+    begin
+        if clk'event and clk = '1' then
+            for i in 1 to NUM_OUTPUTS loop
+                outputs(i) <= (others => '0');
+            end loop;
+            if address >= 1 and address <= NUM_OUTPUTS then
+                outputs(address) <= input;
+            elsif address = 255 then
+                for i in 1 to NUM_OUTPUTS loop
+                    outputs(i) <= input;
+                end loop;
+            end if;
+            remaining_bits <= remaining_bits - 1;
+            if remaining_bits = 0 then
+                listen <= true;
+                remaining_bits <= MAX;
+                address <= 0;
+            end if;
+        end if;
+    end process forward;
+
+end Behavioral;
