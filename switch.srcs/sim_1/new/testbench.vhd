@@ -59,14 +59,20 @@ architecture Behavioral of testbench is
     constant PAUSE_LEN: integer := 10;
 
     signal clk: std_logic;
-    signal test_in: std_logic_vector(WIDTH downto 0);
-    signal out1: std_logic_vector(WIDTH downto 0);
-    signal out2: std_logic_vector(WIDTH downto 0);
-    signal out3: std_logic_vector(WIDTH downto 0);
-    signal out4: std_logic_vector(WIDTH downto 0);
-    signal test_out: std_logic_array(1 to NUM_OUTPUTS) is (1 => out1, 2 => out2, 3 => out3, 4 => out4);
+    signal test_in: std_logic_vector(WIDTH-1 downto 0);
+    signal test_out: std_logic_array(1 to NUM_OUTPUTS)(WIDTH-1 downto 0);
+    
+    signal out1: std_logic_vector(WIDTH-1 downto 0) := test_out(1);
+    signal out2: std_logic_vector(WIDTH-1 downto 0) := test_out(2);
+    signal out3: std_logic_vector(WIDTH-1 downto 0) := test_out(3);
+    signal out4: std_logic_vector(WIDTH-1 downto 0) := test_out(4);
     
 begin
+
+    out1 <= test_out(1);
+    out2 <= test_out(2);
+    out3 <= test_out(3);
+    out4 <= test_out(4);
 
     sw: entity work.switch
     generic map(

@@ -56,15 +56,15 @@ entity switch is
   generic (
     --type word;
     --type word_array;
-    WIDTH: integer;
-    NUM_OUTPUTS: integer;
-    PKT_LEN: integer;
-    PAUSE_LEN: integer
+    WIDTH: integer := 8;
+    NUM_OUTPUTS: integer := 4;
+    PKT_LEN: integer := 20;
+    PAUSE_LEN: integer := 10
   );
   Port (
     signal clk: in std_logic;
-    signal input: in std_logic_vector;
-    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
+    signal input: in std_logic_vector(WIDTH-1 downto 0);
+    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)(WIDTH-1 downto 0)
     --signal outputs: out array of t(1 to NUM_OUTPUTS)
     --signal outputs: out word_array
   );
@@ -78,10 +78,15 @@ architecture Behavioral of switch is
 begin
 
     read_start: process(input)
+        variable last_input: std_logic_vector(input'range);
+        variable zeros: std_logic_vector(input'range) := (others => '0');
     begin
-        if input'event and listen and input /= std_logic_vector(to_unsigned(0, input'length)) then
-            address <= to_integer(unsigned(input));
-            listen <= false;
+        if rising_edge(clk) then
+            if input /= zeros and last_input = zeros and listen then
+                address <= to_integer(unsigned(input));
+                listen <= false;
+            end if;
+            last_input := input;
         end if;
     end process read_start;
     
