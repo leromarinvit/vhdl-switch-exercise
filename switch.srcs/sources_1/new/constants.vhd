@@ -24,12 +24,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 package switch_constants is
 
---    constant NUM_OUTPUTS: integer := 4;
---    constant WIDTH: integer := 8;
+    constant NUM_OUTPUTS: integer := 4;
+    constant WIDTH: integer := 8;
     
---    constant PKT_LEN: integer := 20;
---    constant PAUSE_LEN: integer := 10;
+    constant PKT_LEN: integer := 20;
+    constant PAUSE_LEN: integer := 10;
     
-    type std_logic_array is array(positive range <>) of std_logic_vector;
+    type std_logic_array is array(positive range <>) of std_logic_vector(WIDTH-1 downto 0);
 
 end switch_constants;

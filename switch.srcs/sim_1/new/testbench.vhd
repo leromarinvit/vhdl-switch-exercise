@@ -52,15 +52,10 @@ architecture Behavioral of testbench is
 --    end component switch;
     
     constant T: time := 10 ns;
-    
-    constant WIDTH: integer := 8;
-    constant NUM_OUTPUTS: integer := 4;
-    constant PKT_LEN: integer := 20;
-    constant PAUSE_LEN: integer := 10;
 
     signal clk: std_logic;
     signal test_in: std_logic_vector(WIDTH-1 downto 0);
-    signal test_out: std_logic_array(1 to NUM_OUTPUTS)(WIDTH-1 downto 0);
+    signal test_out: std_logic_array(1 to NUM_OUTPUTS);
     
     signal out1: std_logic_vector(WIDTH-1 downto 0) := test_out(1);
     signal out2: std_logic_vector(WIDTH-1 downto 0) := test_out(2);

@@ -64,7 +64,7 @@ entity switch is
   Port (
     signal clk: in std_logic;
     signal input: in std_logic_vector(WIDTH-1 downto 0);
-    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)(WIDTH-1 downto 0)
+    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
     --signal outputs: out array of t(1 to NUM_OUTPUTS)
     --signal outputs: out word_array
   );
@@ -75,6 +75,7 @@ architecture Behavioral of switch is
     signal listen: boolean := true;
     constant MAX: integer := PKT_LEN + PAUSE_LEN;
     signal remaining_bits: integer range 0 to MAX := MAX;
+    signal finished: boolean := false;
 begin
 
     read_start: process(input)
@@ -85,6 +86,9 @@ begin
             if input /= zeros and last_input = zeros and listen then
                 address <= to_integer(unsigned(input));
                 listen <= false;
+            elsif finished then
+                listen <= true;
+                address <= 0;
             end if;
             last_input := input;
         end if;
@@ -97,6 +101,7 @@ begin
                 outputs(i) <= (others => '0');
             end loop;
             if address >= 1 and address <= NUM_OUTPUTS then
+                finished <= false;
                 outputs(address) <= input;
             elsif address = 255 then
                 for i in 1 to NUM_OUTPUTS loop
@@ -105,9 +110,8 @@ begin
             end if;
             remaining_bits <= remaining_bits - 1;
             if remaining_bits = 0 then
-                listen <= true;
+                finished <= true;
                 remaining_bits <= MAX;
-                address <= 0;
             end if;
         end if;
     end process forward;
