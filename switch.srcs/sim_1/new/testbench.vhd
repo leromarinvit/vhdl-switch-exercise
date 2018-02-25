@@ -21,6 +21,8 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.all;
+use ieee.numeric_std.all;
 
 use work.switch_constants.all;
 
@@ -61,6 +63,7 @@ architecture Behavioral of testbench is
     signal out2: std_logic_vector(WIDTH-1 downto 0) := test_out(2);
     signal out3: std_logic_vector(WIDTH-1 downto 0) := test_out(3);
     signal out4: std_logic_vector(WIDTH-1 downto 0) := test_out(4);
+    --signal dbg: std_logic_vector(7 downto 0);
     
 begin
 
@@ -81,6 +84,7 @@ begin
         clk => clk,
         input => test_in,
         outputs => test_out
+        --dbg => dbg
     );
     
     osc: process
@@ -98,74 +102,20 @@ begin
             wait for 3*T/4; -- in der Mitte der Clock_low Phase
             
             -- Testdaten:
-            test_in <= x"00"; -- erstes Byte (noch Ruhe auf der Leitung)
-            wait for T;   
-            test_in <= x"00"; -- zweites Byte
+            test_in <= x"01"; --  adresse, 1. Byte
             wait for T;
-            test_in <= x"04"; -- jetzt Adresse als Startbyte
-            wait for T;
-            test_in <= x"02"; -- Payload 1. Byte
-            wait for T;
-            test_in <= x"01"; -- Payload 2. Byte
-            wait for T;
-            test_in <= x"17"; -- usw...
-            wait for T;
-            test_in <= x"05";
-            wait for T;
-            test_in <= x"FF";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"EC";
-            wait for T;
-            test_in <= x"BA";
-            wait for T;
-            test_in <= x"03";
-            wait for T;
-            test_in <= x"08";
-            wait for T;
-            test_in <= x"33";
-            wait for T;
-            test_in <= x"45";
-            wait for T;
-            test_in <= x"AA";
-            wait for T;
-            test_in <= x"13";
-            wait for T;
-            test_in <= x"AC";
-            wait for T;
-            test_in <= x"AB";
-            wait for T;
-            test_in <= x"DE";
-            wait for T;
-            test_in <= x"AD";
-            wait for T;
-            test_in <= x"01"; -- 19. Payload-Byte (=20. Byte des Pakets)
-            wait for T;
-            test_in <= x"00"; -- Pause: jetzt muss mind 10 mal die "0" kommen
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00";
-            wait for T;
-            test_in <= x"00"; -- 10. Byte der Pause
-            wait for T;
-            test_in <= x"00";
-            
-            
+            for i in 1 to 19 loop -- payload, 19 Bytes
+                test_in <= std_logic_vector(to_unsigned(255-i, 8));
+                wait for T;
+            end loop;
+            for i in 1 to 20 loop -- 10 Pausen-Bytes
+                test_in <= x"00";
+                wait for T;
+            end loop;
+
+            -- Auslauf...
             wait for (2**WIDTH + 10) * T;
+            -- und ende!
             assert false
             report "test finished" severity failure;
         end process Waveforms;
