@@ -35,8 +35,8 @@ use IEEE.NUMERIC_STD.ALL;
 
 package switch_types is
     generic(
-        WIDTH: integer;
-        NUM_PORTS: integer
+        WIDTH: integer; -- Datenbreite (Bits)
+        NUM_PORTS: integer -- Anzahl der Ausgänge
     );
     subtype word is std_logic_vector(WIDTH-1 downto 0);
     type word_array is array (1 to NUM_PORTS) of word; 
@@ -71,13 +71,14 @@ entity switch is
 end switch;
 
 architecture Behavioral of switch is
-    signal address: integer range 0 to 2 ** input'length;
-    signal listen: boolean := true;
-    constant MAX: integer := PKT_LEN + PAUSE_LEN;
+    signal address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
+    signal listen: boolean := true; -- warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
+    constant MAX: integer := PKT_LEN + PAUSE_LEN; -- 20 + 10 = 30 Bytes
     signal remaining_bits: integer range 0 to MAX := MAX;
     signal finished: boolean := false;
 begin
 
+    -- read_start: speichert das erste Byte des Datenpakets als Zieladresse
     read_start: process(input)
         variable last_input: std_logic_vector(input'range);
         variable zeros: std_logic_vector(input'range) := (others => '0');
