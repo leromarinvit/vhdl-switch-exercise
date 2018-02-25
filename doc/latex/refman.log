@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Cygwin) (preloaded format=pdflatex 2017.7.26)  25 FEB 2018 22:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Cygwin) (preloaded format=pdflatex 2017.7.26)  25 FEB 2018 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1371,10 +1371,10 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 Package epstopdf Info: Source file: <classswitch.eps>
-(epstopdf)                    date: 2018-02-25 22:19:05
+(epstopdf)                    date: 2018-02-25 22:34:07
 (epstopdf)                    size: 3772 bytes
 (epstopdf)             Output file: <classswitch-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-02-25 22:19:26
+(epstopdf)                    date: 2018-02-25 22:34:11
 (epstopdf)                    size: 4462 bytes
 (epstopdf)             Command: <repstopdf --outfile=classswitch-eps-converted-
 to.pdf classswitch.eps>
@@ -1492,10 +1492,10 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 Package epstopdf Info: Source file: <classtestbench.eps>
-(epstopdf)                    date: 2018-02-25 22:19:05
+(epstopdf)                    date: 2018-02-25 22:34:07
 (epstopdf)                    size: 3772 bytes
 (epstopdf)             Output file: <classtestbench-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-02-25 22:19:27
+(epstopdf)                    date: 2018-02-25 22:34:11
 (epstopdf)                    size: 4465 bytes
 (epstopdf)             Command: <repstopdf --outfile=classtestbench-eps-convert
 ed-to.pdf classtestbench.eps>
@@ -1612,13 +1612,13 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 16.
+(babel)             in language  on input line 11.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 16.
+(babel)             in language  on input line 11.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 16.
+(babel)             in language  on input line 11.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 16.
+(babel)             in language  on input line 11.
  [15]) (./switch_8vhd.tex
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
@@ -1708,7 +1708,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 173.
 Here is how much of TeX's memory you used:
  15551 strings out of 494884
  221464 string characters out of 6179173
- 328308 words of memory out of 5000000
+ 327308 words of memory out of 5000000
  18406 multiletter control sequences out of 15000+600000
  58999 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1722,7 +1722,7 @@ ts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic
 /uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/s
 hare/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/font
 s/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (23 pages, 146867 bytes).
+Output written on refman.pdf (23 pages, 147125 bytes).
 PDF statistics:
  752 PDF objects out of 1000 (max. 8388607)
  705 compressed objects within 8 object streams

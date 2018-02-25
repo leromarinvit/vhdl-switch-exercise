@@ -66,9 +66,11 @@
 00078 \textcolor{keyword}{            -- 0 - 1/2 T: Clock\_high; 1/2 T bis T: Clock\_low}
 00079             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{3}\textcolor{vhdlchar}{*}\textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}}\textcolor{vhdlchar}{/}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{4};\textcolor{keyword}{ -- in der Mitte der Clock\_low Phase}
 00080             
+00081 \textcolor{keyword}{            -- Nullbyte for der ersten Adresse}
 00082             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
 00083             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00084 
+00085 \textcolor{keyword}{            -- Jeden Ausgang einzeln testen            }
 00086             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{addr} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{4} \textcolor{keywordflow}{loop}
 00087                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{addr}\textcolor{vhdlchar}{,} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}}\textcolor{vhdlchar}{'}\textcolor{vhdlkeyword}{length}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};\textcolor{keyword}{ --  adresse,
        1. Byte}
@@ -83,6 +85,7 @@
 00096                 \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
 00097             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
 00098 
+00099 \textcolor{keyword}{            -- Broadcast}
 00100             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{keyword}{"FF"};\textcolor{keyword}{ --  adresse, 1. Byte}
 00101             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00102             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
@@ -94,6 +97,7 @@
 00108                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00109             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
 00110 
+00111 \textcolor{keyword}{            -- Test auf "falsche" Adressen}
 00112             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"05"};\textcolor{keyword}{ --  adresse, 1. Byte}
 00113             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00114             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
@@ -105,6 +109,7 @@
 00120                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00121             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
 00122 
+00123 \textcolor{keyword}{            -- richtiges Paket nach falschem}
 00124             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"02"};\textcolor{keyword}{ --  adresse, 1. Byte}
 00125             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
 00126             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
