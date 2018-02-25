@@ -19,29 +19,6 @@
 ----------------------------------------------------------------------------------
 
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-use work.switch_constants.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-package switch_types is
-    generic(
-        WIDTH: integer; -- Datenbreite (Bits)
-        NUM_PORTS: integer -- Anzahl der Ausgänge
-    );
-    subtype word is std_logic_vector(WIDTH-1 downto 0);
-    type word_array is array (1 to NUM_PORTS) of word; 
-end package;
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;

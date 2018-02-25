@@ -26,33 +26,11 @@ use ieee.numeric_std.all;
 
 use work.switch_constants.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity testbench is
 --  Port ( );
 end testbench;
 
 architecture Behavioral of testbench is
---    component switch is
---      generic (
---          NUM_OUTPUTS: integer;
---          PKT_LEN: integer;
---          PAUSE_LEN: integer
---        );
---        Port (
---          signal clk: in std_logic;
---          signal input: in std_logic_vector;
---          signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
---        );
---    end component switch;
-    
     constant T: time := 10 ns;
 
     signal clk: std_logic;
@@ -63,7 +41,6 @@ architecture Behavioral of testbench is
     signal out2: std_logic_vector(WIDTH-1 downto 0) := test_out(2);
     signal out3: std_logic_vector(WIDTH-1 downto 0) := test_out(3);
     signal out4: std_logic_vector(WIDTH-1 downto 0) := test_out(4);
-    --signal dbg: std_logic_vector(7 downto 0);
     
 begin
 
@@ -84,7 +61,6 @@ begin
         clk => clk,
         input => test_in,
         outputs => test_out
-        --dbg => dbg
     );
     
     osc: process
