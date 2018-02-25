@@ -101,6 +101,10 @@ begin
             -- 0 - 1/2 T: Clock_high; 1/2 T bis T: Clock_low
             wait for 3*T/4; -- in der Mitte der Clock_low Phase
             
+            --! Nullbyte for der ersten Adresse
+            test_in <= x"00";
+            wait for T;
+            
             -- Testdaten:
             test_in <= x"01"; --  adresse, 1. Byte
             wait for T;
