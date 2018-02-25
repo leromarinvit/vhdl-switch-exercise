@@ -1,41 +1,40 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 01/17/2018 08:20:11 PM
--- Design Name: 
--- Module Name: testbench - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+--! @file
+--! @brief   Switch Testbench 
+--! @author  Bernd Wacke
+--! @author  Oliver Hanser
+--! @details This file defines a testbench for the switch entity.
 ----------------------------------------------------------------------------------
 
-
+--! Use standard library
 library IEEE;
+--! Use std_lgoic functions
 use IEEE.STD_LOGIC_1164.ALL;
+--! Use unsigned logic functions
 use IEEE.STD_LOGIC_UNSIGNED.all;
+--! Use numeric functions
 use ieee.numeric_std.all;
 
+--! Use constant definitions
 use work.switch_constants.all;
 
+--! Testbench entity
 entity testbench is
 --  Port ( );
 end testbench;
 
-architecture Behavioral of testbench is
-    constant T: time := 10 ns;
+--! Testbench architecture
 
-    signal clk: std_logic;
-    signal test_in: std_logic_vector(WIDTH-1 downto 0);
-    signal test_out: std_logic_array(1 to NUM_OUTPUTS);
+--! Mit dieser Testbench wird der Switch getestet. Es werden alle Ausgänge
+--! einzeln getestet, sowie ein Broadcast. Ein Paket mit ungültiger Adresse
+--! wird ebenfalls getestet, sowie die Funktion des Switch nach einem solchen
+--! ungültigen Paket.
+architecture testbench of testbench is
+    constant T: time := 10 ns;  --! Zeitkonstante
+
+    signal clk: std_logic;                              --! Takt
+    signal test_in: std_logic_vector(WIDTH-1 downto 0); --! Eingang
+    signal test_out: std_logic_array(1 to NUM_OUTPUTS); --! Ausgänge
     
     signal out1: std_logic_vector(WIDTH-1 downto 0) := test_out(1);
     signal out2: std_logic_vector(WIDTH-1 downto 0) := test_out(2);
@@ -63,6 +62,7 @@ begin
         outputs => test_out
     );
     
+    --! osc: Taktgenerator
     osc: process
     begin
         clk <= '1';
@@ -71,6 +71,7 @@ begin
         wait for T/2;
     end process osc;
     
+    --! Waveforms: Generiert Testinputs
     Waveforms: process
         begin
             -- Daten versetzt zur clock bereitstellen, so dass bei steigender Flanke immer sichere Daten anliegen:
@@ -138,4 +139,4 @@ begin
             report "test finished" severity failure;
         end process Waveforms;
 
-end Behavioral;
+end testbench;

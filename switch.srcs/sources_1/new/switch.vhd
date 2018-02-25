@@ -1,61 +1,68 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 01/17/2018 06:41:07 PM
--- Design Name: 
--- Module Name: switch - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+--! @file
+--! @brief   Switch
+--! @author  Bernd Wacke
+--! @author  Oliver Hanser
+--! @details This file defines the switch entity.
 ----------------------------------------------------------------------------------
 
 
-
+--! Use standard library
 library IEEE;
+
+--! Use std_lgoic functions
 use IEEE.STD_LOGIC_1164.ALL;
 
+--! Use constant definitions
 use work.switch_constants.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+--! Use numeric functions
 use IEEE.NUMERIC_STD.ALL;
 
+
+--! Switch entity
+
+--! Diese Entity implementiert den Switch. Diverse Parameter werden als Generics
+--! erst bei der Instanzierung angegeben.
 entity switch is
   generic (
-    WIDTH: integer := 8;
-    NUM_OUTPUTS: integer := 4;
-    PKT_LEN: integer := 20;
-    PAUSE_LEN: integer := 10
+    WIDTH: integer := 8;        --! Wortbreite (parallel)
+    NUM_OUTPUTS: integer := 4;  --! Anzahl der Ausgänge
+    PKT_LEN: integer := 20;     --! Länge der Datenpakete
+    PAUSE_LEN: integer := 10    --! Länge der Pause zwischen Paketen
   );
   Port (
-    signal clk: in std_logic;
-    signal input: in std_logic_vector(WIDTH-1 downto 0);
-    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
+    signal clk: in std_logic;                               --! Takt
+    signal input: in std_logic_vector(WIDTH-1 downto 0);    --! Eingang
+    signal outputs: out std_logic_array(1 to NUM_OUTPUTS)   --! Array von Ausgängen
   );
 end switch;
 
-architecture Behavioral of switch is
-    shared variable address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
-    constant MAX: integer := PKT_LEN + PAUSE_LEN - 1; -- 20 + 10 = 30 Bytes
+--! Switch architecture
+
+--! In dieser Architecture wird der Switch implementiert
+architecture switch of switch is
+    --! Adresse - mögliche Werte: 0 to 255 (für WIDTH=8)
+    shared variable address: integer range 0 to ((2 ** input'length) - 1);
+    --! Länge von Datenpaket + Pause - 1: 20 + 10 - 1 = 29 Bytes
+    --! 1 Takt Abzug wegen Handshake über signal finished
+    constant MAX: integer := PKT_LEN + PAUSE_LEN - 1;
+    --! Broadcast-Adresse
     constant ADDR_MAX: integer := 2**WIDTH - 1;
+    --! Datenpaket komplett übertragen
     signal finished: boolean := false;
 begin
 
-    -- read_start: speichert das erste Byte des Datenpakets als Zieladresse
+    --! read_start: speichert das erste Byte des Datenpakets als Zieladresse
     read_start: process(input, clk)
-        variable temp_addr: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
+        --! Temporäre Adressvariable für Gültigkeitsprüfung
+        variable temp_addr: integer range 0 to ((2 ** input'length) - 1);
+        --! Letztes gelesenes Byte
         variable last_input: std_logic_vector(input'range);
+        --! Vergleichswert aus lauter Nullbits
         variable zeros: std_logic_vector(input'range) := (others => '0');
-        variable listen: boolean := true; -- warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
+        --! warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
+        variable listen: boolean := true;
     begin
         if rising_edge(clk) then
             if input /= zeros and last_input = zeros and listen then
@@ -72,7 +79,12 @@ begin
         end if;
     end process read_start;
     
+    --! forward: leitet Daten am Eingang an selektierten Ausgang weiter
+    --! Wenn address = ADDR_MAX, dann wird das Paket an alle Ausgänge gesendet
+    --! Nach MAX Bytes wird finished = true gesetzt und remaining_bytes wieder
+    --! auf MAX.
     forward: process(input, clk)
+        --! Zähler für verbleibende Bytes in Datenpaket
         variable remaining_bytes: integer range 0 to MAX := MAX;
     begin
         if clk'event and clk = '1' then
@@ -98,4 +110,4 @@ begin
         end if;
     end process forward;
 
-end Behavioral;
+end switch;
