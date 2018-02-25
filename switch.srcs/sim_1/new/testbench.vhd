@@ -78,11 +78,11 @@ begin
             -- 0 - 1/2 T: Clock_high; 1/2 T bis T: Clock_low
             wait for 3*T/4; -- in der Mitte der Clock_low Phase
             
-            --! Nullbyte for der ersten Adresse
+            -- Nullbyte for der ersten Adresse
             test_in <= x"00";
             wait for T;
 
-            --! Jeden Ausgang einzeln testen            
+            -- Jeden Ausgang einzeln testen            
             for addr in 1 to 4 loop
                 test_in <= std_logic_vector(to_unsigned(addr, test_in'length)); --  adresse, 1. Byte
                 wait for T;
@@ -96,7 +96,7 @@ begin
                 end loop;
             end loop;
 
-            --! Broadcast
+            -- Broadcast
             test_in <= x"FF"; --  adresse, 1. Byte
             wait for T;
             for i in 0 to 19 loop -- payload, 20 Bytes
@@ -108,7 +108,7 @@ begin
                 wait for T;
             end loop;
 
-            --! Test auf "falsche" Adressen
+            -- Test auf "falsche" Adressen
             test_in <= x"05"; --  adresse, 1. Byte
             wait for T;
             for i in 0 to 19 loop -- payload, 20 Bytes
@@ -120,7 +120,7 @@ begin
                 wait for T;
             end loop;
 
-            --! richtiges Paket nach falschem
+            -- richtiges Paket nach falschem
             test_in <= x"02"; --  adresse, 1. Byte
             wait for T;
             for i in 0 to 19 loop -- payload, 20 Bytes
