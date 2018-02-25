@@ -131,6 +131,30 @@ begin
                 wait for T;
             end loop;
 
+            --! Test auf "falsche" Adressen
+            test_in <= x"05"; --  adresse, 1. Byte
+            wait for T;
+            for i in 0 to 19 loop -- payload, 20 Bytes
+                test_in <= std_logic_vector(to_unsigned(255-i, 8));
+                wait for T;
+            end loop;
+            for i in 1 to 10 loop -- 10 Pausen-Bytes
+                test_in <= x"00";
+                wait for T;
+            end loop;
+
+            --! richtiges Paket nach falschem
+            test_in <= x"02"; --  adresse, 1. Byte
+            wait for T;
+            for i in 0 to 19 loop -- payload, 20 Bytes
+                test_in <= std_logic_vector(to_unsigned(255-i, 8));
+                wait for T;
+            end loop;
+            for i in 1 to 10 loop -- 10 Pausen-Bytes
+                test_in <= x"00";
+                wait for T;
+            end loop;
+
             -- Auslauf...
             wait for (2**WIDTH + 10) * T;
             -- und ende!

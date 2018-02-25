@@ -75,14 +75,18 @@ begin
 
     -- read_start: speichert das erste Byte des Datenpakets als Zieladresse
     read_start: process(input, clk)
+        variable temp_addr: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
         variable last_input: std_logic_vector(input'range);
         variable zeros: std_logic_vector(input'range) := (others => '0');
         variable listen: boolean := true; -- warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
     begin
         if rising_edge(clk) then
             if input /= zeros and last_input = zeros and listen then
-                address := to_integer(unsigned(input));
-                listen := false;
+                temp_addr := to_integer(unsigned(input));
+                if temp_addr <= NUM_OUTPUTS or temp_addr = ADDR_MAX then
+                    address := temp_addr;
+                    listen := false;
+                end if;
             elsif finished then
                 listen := true;
                 address := 0;
