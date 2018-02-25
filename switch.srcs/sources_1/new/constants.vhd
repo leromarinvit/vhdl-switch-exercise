@@ -1,10 +1,9 @@
 ----------------------------------------------------------------------------------
 --! @file
---! @brief  Switch Constants
---! @author Bernd Wacke
---! @author Oliver Hanser
-
---! This file defines constants for the Switch project.
+--! @brief   Switch Constants
+--! @author  Bernd Wacke
+--! @author  Oliver Hanser
+--! @details This file defines constants for the Switch project.
 ----------------------------------------------------------------------------------
 
 

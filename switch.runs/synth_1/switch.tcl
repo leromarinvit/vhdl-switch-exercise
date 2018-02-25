@@ -13,7 +13,7 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property ip_output_repo c:/fh/fpga/switch/switch.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_vhdl -vhdl2008 -library xil_defaultlib {
+read_vhdl -library xil_defaultlib {
   C:/fh/fpga/switch/switch.srcs/sources_1/new/constants.vhd
   C:/fh/fpga/switch/switch.srcs/sources_1/new/switch.vhd
 }

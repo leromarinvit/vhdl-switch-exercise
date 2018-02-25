@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
-| Date         : Sun Feb 25 18:47:27 2018
+| Date         : Sun Feb 25 22:02:58 2018
 | Host         : NB000473 running 64-bit Service Pack 1  (build 7601)
 | Command      : report_utilization -file switch_utilization_synth.rpt -pb switch_utilization_synth.pb
 | Design       : switch
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |   23 |     0 |     63400 |  0.04 |
-|   LUT as Logic          |   23 |     0 |     63400 |  0.04 |
+| Slice LUTs*             |   61 |     0 |     63400 |  0.10 |
+|   LUT as Logic          |   61 |     0 |     63400 |  0.10 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
 | Slice Registers         |   55 |     0 |    126800 |  0.04 |
 |   Register as Flip Flop |   55 |     0 |    126800 |  0.04 |
@@ -56,8 +56,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 0     |          Yes |         Set |            - |
-| 55    |          Yes |       Reset |            - |
+| 32    |          Yes |         Set |            - |
+| 23    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -146,14 +146,16 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |   55 |        Flop & Latch |
+| LUT2     |   36 |                 LUT |
 | OBUF     |   32 |                  IO |
-| LUT6     |   11 |                 LUT |
+| FDSE     |   32 |        Flop & Latch |
+| LUT6     |   26 |                 LUT |
+| FDRE     |   23 |        Flop & Latch |
 | IBUF     |    9 |                  IO |
-| LUT4     |    8 |                 LUT |
-| LUT5     |    3 |                 LUT |
-| LUT3     |    3 |                 LUT |
-| LUT2     |    3 |                 LUT |
+| LUT4     |    5 |                 LUT |
+| LUT5     |    4 |                 LUT |
+| LUT3     |    4 |                 LUT |
+| CARRY4   |    1 |          CarryLogic |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 
