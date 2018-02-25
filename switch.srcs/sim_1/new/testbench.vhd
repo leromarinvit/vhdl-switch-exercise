@@ -69,7 +69,8 @@ begin
     out3 <= test_out(3);
     out4 <= test_out(4);
 
-    sw: entity work.switch
+    sw: entity work.switch -- statt component-declaration; siehe
+                           -- http://insights.sigasi.com/tech/four-and-half-ways-write-vhdl-instantiations.html
     generic map(
         WIDTH => WIDTH,
         NUM_OUTPUTS => NUM_OUTPUTS,
@@ -89,5 +90,84 @@ begin
         clk <= '0';
         wait for T/2;
     end process osc;
+    
+    Waveforms: process
+        begin
+            -- Daten versetzt zur clock bereitstellen, so dass bei steigender Flanke immer sichere Daten anliegen:
+            -- 0 - 1/2 T: Clock_high; 1/2 T bis T: Clock_low
+            wait for 3*T/4; -- in der Mitte der Clock_low Phase
+            
+            -- Testdaten:
+            test_in <= x"00"; -- erstes Byte (noch Ruhe auf der Leitung)
+            wait for T;   
+            test_in <= x"00"; -- zweites Byte
+            wait for T;
+            test_in <= x"04"; -- jetzt Adresse als Startbyte
+            wait for T;
+            test_in <= x"02"; -- Payload 1. Byte
+            wait for T;
+            test_in <= x"01"; -- Payload 2. Byte
+            wait for T;
+            test_in <= x"17"; -- usw...
+            wait for T;
+            test_in <= x"05";
+            wait for T;
+            test_in <= x"FF";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"EC";
+            wait for T;
+            test_in <= x"BA";
+            wait for T;
+            test_in <= x"03";
+            wait for T;
+            test_in <= x"08";
+            wait for T;
+            test_in <= x"33";
+            wait for T;
+            test_in <= x"45";
+            wait for T;
+            test_in <= x"AA";
+            wait for T;
+            test_in <= x"13";
+            wait for T;
+            test_in <= x"AC";
+            wait for T;
+            test_in <= x"AB";
+            wait for T;
+            test_in <= x"DE";
+            wait for T;
+            test_in <= x"AD";
+            wait for T;
+            test_in <= x"01"; -- 19. Payload-Byte (=20. Byte des Pakets)
+            wait for T;
+            test_in <= x"00"; -- Pause: jetzt muss mind 10 mal die "0" kommen
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00";
+            wait for T;
+            test_in <= x"00"; -- 10. Byte der Pause
+            wait for T;
+            test_in <= x"00";
+            
+            
+            wait for (2**WIDTH + 10) * T;
+            assert false
+            report "test finished" severity failure;
+        end process Waveforms;
 
 end Behavioral;
