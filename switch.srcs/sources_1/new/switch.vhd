@@ -69,6 +69,7 @@ end switch;
 architecture Behavioral of switch is
     shared variable address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
     constant MAX: integer := PKT_LEN + PAUSE_LEN - 1; -- 20 + 10 = 30 Bytes
+    constant ADDR_MAX: integer := 2**WIDTH - 1;
     signal finished: boolean := false;
 begin
 
@@ -100,7 +101,8 @@ begin
             if address >= 1 and address <= NUM_OUTPUTS then
                 finished <= false;
                 outputs(address) <= input;
-            elsif address = 2**WIDTH - 1 then
+            elsif address = ADDR_MAX then
+                finished <= false;
                 for i in 1 to NUM_OUTPUTS loop
                     outputs(i) <= input;
                 end loop;
