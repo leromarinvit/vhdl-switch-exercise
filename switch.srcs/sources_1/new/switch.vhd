@@ -72,9 +72,7 @@ end switch;
 
 architecture Behavioral of switch is
     signal address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
-    signal listen: boolean := true; -- warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
-    constant MAX: integer := PKT_LEN + PAUSE_LEN; -- 20 + 10 = 30 Bytes
-    signal remaining_bits: integer range 0 to MAX := MAX;
+    constant MAX: integer := PKT_LEN + PAUSE_LEN - 1; -- 20 + 10 = 30 Bytes
     signal finished: boolean := false;
 begin
 
@@ -82,13 +80,14 @@ begin
     read_start: process(input, clk)
         variable last_input: std_logic_vector(input'range);
         variable zeros: std_logic_vector(input'range) := (others => '0');
+        variable listen: boolean := true; -- warten auf neue Daten - Adresse ist erstes Byte, danach wird listen auf false gesetzt
     begin
         if rising_edge(clk) then
             if input /= zeros and last_input = zeros and listen then
                 address <= to_integer(unsigned(input));
-                listen <= false;
+                listen := false;
             elsif finished then
-                listen <= true;
+                listen := true;
                 address <= 0;
             end if;
             last_input := input;
@@ -96,6 +95,7 @@ begin
     end process read_start;
     
     forward: process(input, clk)
+        variable remaining_bits: integer range 0 to MAX := MAX;
     begin
         if clk'event and clk = '1' then
             for i in 1 to NUM_OUTPUTS loop
@@ -104,15 +104,17 @@ begin
             if address >= 1 and address <= NUM_OUTPUTS then
                 finished <= false;
                 outputs(address) <= input;
-            elsif address = 255 then
+            elsif address = 2**WIDTH - 1 then
                 for i in 1 to NUM_OUTPUTS loop
                     outputs(i) <= input;
                 end loop;
             end if;
-            remaining_bits <= remaining_bits - 1;
+            if address > 0 then
+                remaining_bits := remaining_bits - 1;
+            end if;
             if remaining_bits = 0 then
                 finished <= true;
-                remaining_bits <= MAX;
+                remaining_bits := MAX;
             end if;
         end if;
     end process forward;

@@ -104,15 +104,29 @@ begin
             --! Nullbyte for der ersten Adresse
             test_in <= x"00";
             wait for T;
-            
-            -- Testdaten:
-            test_in <= x"01"; --  adresse, 1. Byte
+
+            --! Jeden Ausgang einzeln testen            
+            for addr in 1 to 4 loop
+                test_in <= std_logic_vector(to_unsigned(addr, test_in'length)); --  adresse, 1. Byte
+                wait for T;
+                for i in 0 to 19 loop -- payload, 20 Bytes
+                    test_in <= std_logic_vector(to_unsigned(255-i, 8));
+                    wait for T;
+                end loop;
+                for i in 1 to 10 loop -- 10 Pausen-Bytes
+                    test_in <= x"00";
+                    wait for T;
+                end loop;
+            end loop;
+
+            --! Broadcast
+            test_in <= x"FF"; --  adresse, 1. Byte
             wait for T;
-            for i in 1 to 19 loop -- payload, 19 Bytes
+            for i in 0 to 19 loop -- payload, 20 Bytes
                 test_in <= std_logic_vector(to_unsigned(255-i, 8));
                 wait for T;
             end loop;
-            for i in 1 to 20 loop -- 10 Pausen-Bytes
+            for i in 1 to 10 loop -- 10 Pausen-Bytes
                 test_in <= x"00";
                 wait for T;
             end loop;
