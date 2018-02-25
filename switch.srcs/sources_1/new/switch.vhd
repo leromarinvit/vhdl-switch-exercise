@@ -67,7 +67,7 @@ entity switch is
 end switch;
 
 architecture Behavioral of switch is
-    signal address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
+    shared variable address: integer range 0 to ((2 ** input'length) - 1); -- mögliche Werte: 0 to 255
     constant MAX: integer := PKT_LEN + PAUSE_LEN - 1; -- 20 + 10 = 30 Bytes
     signal finished: boolean := false;
 begin
@@ -80,11 +80,11 @@ begin
     begin
         if rising_edge(clk) then
             if input /= zeros and last_input = zeros and listen then
-                address <= to_integer(unsigned(input));
+                address := to_integer(unsigned(input));
                 listen := false;
             elsif finished then
                 listen := true;
-                address <= 0;
+                address := 0;
             end if;
             last_input := input;
         end if;
