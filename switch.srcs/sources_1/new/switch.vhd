@@ -79,7 +79,7 @@ architecture Behavioral of switch is
 begin
 
     -- read_start: speichert das erste Byte des Datenpakets als Zieladresse
-    read_start: process(input)
+    read_start: process(input, clk)
         variable last_input: std_logic_vector(input'range);
         variable zeros: std_logic_vector(input'range) := (others => '0');
     begin
