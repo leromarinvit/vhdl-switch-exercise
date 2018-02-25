@@ -2,8 +2,8 @@
 # Vivado v2017.2 (64-bit)
 # SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
 # IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
-# Start of session at: Thu Jan 18 20:56:03 2018
-# Process ID: 43568
+# Start of session at: Sun Feb 25 18:47:10 2018
+# Process ID: 9284
 # Current directory: C:/fh/fpga/switch/switch.runs/synth_1
 # Command line: vivado.exe -log switch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source switch.tcl
 # Log file: C:/fh/fpga/switch/switch.runs/synth_1/switch.vds
