@@ -73,7 +73,7 @@ begin
     end process read_start;
     
     forward: process(input, clk)
-        variable remaining_bits: integer range 0 to MAX := MAX;
+        variable remaining_bytes: integer range 0 to MAX := MAX;
     begin
         if clk'event and clk = '1' then
             for i in 1 to NUM_OUTPUTS loop
@@ -89,11 +89,11 @@ begin
                 end loop;
             end if;
             if address > 0 then
-                remaining_bits := remaining_bits - 1;
+                remaining_bytes := remaining_bytes - 1;
             end if;
-            if remaining_bits = 0 then
+            if remaining_bytes = 0 then
                 finished <= true;
-                remaining_bits := MAX;
+                remaining_bytes := MAX;
             end if;
         end if;
     end process forward;
