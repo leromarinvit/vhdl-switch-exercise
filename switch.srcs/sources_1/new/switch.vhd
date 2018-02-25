@@ -54,8 +54,6 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity switch is
   generic (
-    --type word;
-    --type word_array;
     WIDTH: integer := 8;
     NUM_OUTPUTS: integer := 4;
     PKT_LEN: integer := 20;
@@ -65,8 +63,6 @@ entity switch is
     signal clk: in std_logic;
     signal input: in std_logic_vector(WIDTH-1 downto 0);
     signal outputs: out std_logic_array(1 to NUM_OUTPUTS)
-    --signal outputs: out array of t(1 to NUM_OUTPUTS)
-    --signal outputs: out word_array
   );
 end switch;
 
