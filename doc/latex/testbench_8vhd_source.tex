@@ -1,0 +1,127 @@
+\hypertarget{testbench_8vhd_source}{}\section{testbench.\+vhd}
+\label{testbench_8vhd_source}\index{C\+:/fh/fpga/switch/switch.\+srcs/sim\+\_\+1/new/testbench.\+vhd@{C\+:/fh/fpga/switch/switch.\+srcs/sim\+\_\+1/new/testbench.\+vhd}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{----------------------------------------------------------------------------------}
+00007 \textcolor{keyword}{----------------------------------------------------------------------------------}
+00008 
+\Hypertarget{testbench_8vhd_source_l00010}\mbox{\hyperlink{classtestbench_ae4f03c286607f3181e16b9aa12d0c6d4}{00010}} \textcolor{vhdlkeyword}{library }\textcolor{keywordflow}{IEEE};
+\Hypertarget{testbench_8vhd_source_l00012}\mbox{\hyperlink{classtestbench_aa4b2b25246a821511120e3149b003563}{00012}} \textcolor{vhdlkeyword}{use }IEEE.STD\_LOGIC\_1164.\textcolor{keywordflow}{ALL};
+\Hypertarget{testbench_8vhd_source_l00014}\mbox{\hyperlink{classtestbench_a241c3e72dd8024cc8ae831b1b2aed7db}{00014}} \textcolor{vhdlkeyword}{use }IEEE.STD\_LOGIC\_UNSIGNED.\textcolor{keywordflow}{all};
+\Hypertarget{testbench_8vhd_source_l00016}\mbox{\hyperlink{classtestbench_a2edc34402b573437d5f25fa90ba4013e}{00016}} \textcolor{vhdlkeyword}{use }ieee.numeric\_std.\textcolor{keywordflow}{all};
+00017 
+\Hypertarget{testbench_8vhd_source_l00019}\mbox{\hyperlink{classtestbench_a46ad374fc1935ff761f9c11bad3a0719}{00019}} \textcolor{vhdlkeyword}{use }work.\mbox{\hyperlink{classswitch__constants}{switch\_constants}}.\textcolor{keywordflow}{all};
+00020 
+\Hypertarget{testbench_8vhd_source_l00022}\mbox{\hyperlink{classtestbench}{00022}} \textcolor{keywordflow}{entity }\mbox{\hyperlink{classtestbench}{testbench}} \textcolor{keywordflow}{is}
+00023 \textcolor{keyword}{--  Port ( );}
+00024 \textcolor{keywordflow}{end} \textcolor{vhdlchar}{testbench};
+00025 
+00027 
+\Hypertarget{testbench_8vhd_source_l00032}\mbox{\hyperlink{classtestbench_1_1testbench}{00032}} \textcolor{keywordflow}{architecture} \mbox{\hyperlink{classtestbench}{testbench}} \textcolor{keywordflow}{of} \mbox{\hyperlink{classtestbench}{testbench}} is
+\Hypertarget{testbench_8vhd_source_l00033}\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{00033}}     \textcolor{keywordflow}{constant} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}}\textcolor{vhdlchar}{:} \textcolor{comment}{time} \textcolor{vhdlchar}{:=} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10} \textcolor{vhdlchar}{ns};
+00034 
+\Hypertarget{testbench_8vhd_source_l00035}\mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{00035}}     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{clk}}}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic};
+\Hypertarget{testbench_8vhd_source_l00036}\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{00036}}     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)};
+\Hypertarget{testbench_8vhd_source_l00037}\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{00037}}     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{:} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_ab8800f6bfb13a05fb4b8f9cf70129f9a}{std\_logic\_array}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a5d5b54efad1e67dd67aa312c28ef5cae}{NUM\_OUTPUTS}}}\textcolor{vhdlchar}{)};
+00038     
+00039     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{out1}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)} \textcolor{vhdlchar}{:=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1}\textcolor{vhdlchar}{)};
+00040     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{out2}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)} \textcolor{vhdlchar}{:=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{2}\textcolor{vhdlchar}{)};
+00041     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{out3}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)} \textcolor{vhdlchar}{:=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{3}\textcolor{vhdlchar}{)};
+00042     \textcolor{keywordflow}{signal} \textcolor{vhdlchar}{out4}\textcolor{vhdlchar}{:} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)} \textcolor{vhdlchar}{:=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{4}\textcolor{vhdlchar}{)};
+00043     
+00044 \textcolor{vhdlkeyword}{begin}
+00045 
+00046     \textcolor{vhdlchar}{out1} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1}\textcolor{vhdlchar}{)};
+00047     \textcolor{vhdlchar}{out2} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{2}\textcolor{vhdlchar}{)};
+00048     \textcolor{vhdlchar}{out3} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{3}\textcolor{vhdlchar}{)};
+00049     \textcolor{vhdlchar}{out4} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{4}\textcolor{vhdlchar}{)};
+00050 
+00051     \textcolor{vhdlchar}{sw}\textcolor{vhdlchar}{:} \textcolor{keywordflow}{entity} \textcolor{vhdlchar}{work}\textcolor{vhdlchar}{.}\textcolor{vhdlchar}{switch}\textcolor{keyword}{ -- statt component-declaration; siehe}
+00052 \textcolor{keyword}{                           --
+       http://insights.sigasi.com/tech/four-and-half-ways-write-vhdl-instantiations.html}
+00053     \textcolor{keywordflow}{generic} \textcolor{keywordflow}{map}(
+00054         WIDTH => \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}},
+00055         NUM\_OUTPUTS => \mbox{\hyperlink{classswitch__constants_a5d5b54efad1e67dd67aa312c28ef5cae}{NUM\_OUTPUTS}},
+00056         PKT\_LEN => \mbox{\hyperlink{classswitch__constants_a13406e763e8cb4595ff53ddecd6c40f2}{PKT\_LEN}},
+00057         PAUSE\_LEN => \mbox{\hyperlink{classswitch__constants_a15a8d4adaa5b58dfc565f1accbac8505}{PAUSE\_LEN}}
+00058     \textcolor{vhdlchar}{)}
+00059     \textcolor{keywordflow}{port} \textcolor{keywordflow}{map}(
+00060         clk => \mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{clk}},
+00061         input => \mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}},
+00062         outputs => \mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\_out}}
+00063     \textcolor{vhdlchar}{)};
+00064     
+\Hypertarget{testbench_8vhd_source_l00066}\mbox{\hyperlink{classtestbench_1_1testbench_a5e2335f6f6f0aa05413a0546a550ba71}{00066}}     osc: \textcolor{keywordflow}{process}
+00067     \textcolor{keywordflow}{begin}
+00068         \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{clk}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{'}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1}\textcolor{vhdlchar}{'};
+00069         \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}}\textcolor{vhdlchar}{/}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{2};
+00070         \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{clk}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{'}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{'};
+00071         \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}}\textcolor{vhdlchar}{/}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{2};
+00072     \textcolor{keywordflow}{end} \textcolor{keywordflow}{process} \textcolor{vhdlchar}{osc};
+00073     
+\Hypertarget{testbench_8vhd_source_l00075}\mbox{\hyperlink{classtestbench_1_1testbench_a77eeaf075b0fe111c4550ccc6850feb4}{00075}}     Waveforms: \textcolor{keywordflow}{process}
+00076         \textcolor{keywordflow}{begin}
+00077 \textcolor{keyword}{            -- Daten versetzt zur clock bereitstellen, so dass bei steigender Flanke immer sichere Daten
+       anliegen:}
+00078 \textcolor{keyword}{            -- 0 - 1/2 T: Clock\_high; 1/2 T bis T: Clock\_low}
+00079             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{3}\textcolor{vhdlchar}{*}\textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}}\textcolor{vhdlchar}{/}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{4};\textcolor{keyword}{ -- in der Mitte der Clock\_low Phase}
+00080             
+00082             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
+00083             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00084 
+00086             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{addr} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{4} \textcolor{keywordflow}{loop}
+00087                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{addr}\textcolor{vhdlchar}{,} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}}\textcolor{vhdlchar}{'}\textcolor{vhdlkeyword}{length}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};\textcolor{keyword}{ --  adresse,
+       1. Byte}
+00088                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00089                 \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
+00090                     \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{255-}\textcolor{vhdlchar}{i}\textcolor{vhdlchar}{,} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{8}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};
+00091                     \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00092                 \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00093                 \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- 10 Pausen-Bytes}
+00094                     \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
+00095                     \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00096                 \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00097             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00098 
+00100             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{keyword}{"FF"};\textcolor{keyword}{ --  adresse, 1. Byte}
+00101             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00102             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
+00103                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{255-}\textcolor{vhdlchar}{i}\textcolor{vhdlchar}{,} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{8}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};
+00104                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00105             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00106             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- 10 Pausen-Bytes}
+00107                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
+00108                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00109             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00110 
+00112             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"05"};\textcolor{keyword}{ --  adresse, 1. Byte}
+00113             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00114             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
+00115                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{255-}\textcolor{vhdlchar}{i}\textcolor{vhdlchar}{,} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{8}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};
+00116                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00117             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00118             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- 10 Pausen-Bytes}
+00119                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
+00120                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00121             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00122 
+00124             \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"02"};\textcolor{keyword}{ --  adresse, 1. Byte}
+00125             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00126             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{19} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- payload, 20 Bytes}
+00127                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{to\_unsigned}\textcolor{vhdlchar}{(}\textcolor{vhdllogic}{255-}\textcolor{vhdlchar}{i}\textcolor{vhdlchar}{,} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{8}\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{)};
+00128                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00129             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00130             \textcolor{keywordflow}{for} \textcolor{vhdlchar}{i} \textcolor{keywordflow}{in} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{to} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10} \textcolor{keywordflow}{loop}\textcolor{keyword}{ -- 10 Pausen-Bytes}
+00131                 \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\_in}}} \textcolor{vhdlchar}{<=} \textcolor{vhdlchar}{x}\textcolor{vhdllogic}{"00"};
+00132                 \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00133             \textcolor{keywordflow}{end} \textcolor{keywordflow}{loop};
+00134 
+00135 \textcolor{keyword}{            -- Auslauf...}
+00136             \textcolor{keywordflow}{wait} \textcolor{keywordflow}{for} \textcolor{vhdlchar}{(}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{2}\textcolor{vhdlchar}{*}\textcolor{vhdlchar}{*}\textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}} \textcolor{vhdlchar}{+} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10}\textcolor{vhdlchar}{)} \textcolor{vhdlchar}{*} \textcolor{vhdlchar}{\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}}};
+00137 \textcolor{keyword}{            -- und ende!}
+00138             \textcolor{keywordflow}{assert} \textcolor{vhdlchar}{false}
+00139             \textcolor{keywordflow}{report} \textcolor{keyword}{"test finished"} \textcolor{keywordflow}{severity} \textcolor{vhdlchar}{failure};
+00140         \textcolor{keywordflow}{end} \textcolor{keywordflow}{process} \textcolor{vhdlchar}{Waveforms};
+00141 
+00142 \textcolor{keywordflow}{end} \textcolor{vhdlchar}{testbench};
+\end{DoxyCode}

@@ -1,0 +1,26 @@
+\begin{theindex}
+
+  \item {C\+:/fh/fpga/switch/switch.\+srcs/sim\+\_\+1/new/testbench.\+vhd}, 
+		\hyperpage{13, 14}
+  \item {C\+:/fh/fpga/switch/switch.\+srcs/sources\+\_\+1/new/constants.\+vhd}, 
+		\hyperpage{15, 16}
+  \item {C\+:/fh/fpga/switch/switch.\+srcs/sources\+\_\+1/new/switch.\+vhd}, 
+		\hyperpage{16, 17}
+
+  \indexspace
+
+  \item {M\+AX}
+    \subitem {switch\+::switch}, \hyperpage{9}
+
+  \indexspace
+
+  \item {switch}, \hyperpage{7, 8}
+  \item {switch\+::switch}
+    \subitem {M\+AX}, \hyperpage{9}
+  \item {switch\+\_\+constants}, \hyperpage{9}
+
+  \indexspace
+
+  \item {testbench}, \hyperpage{10, 11}
+
+\end{theindex}

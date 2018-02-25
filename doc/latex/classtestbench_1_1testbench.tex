@@ -1,0 +1,64 @@
+\hypertarget{classtestbench_1_1testbench}{}\section{testbench Architecture Reference}
+\label{classtestbench_1_1testbench}\index{testbench@{testbench}}
+
+
+Testbench architecture Mit dieser Testbench wird der Switch getestet. Es werden alle Ausgänge einzeln getestet, sowie ein Broadcast. Ein Paket mit ungültiger Adresse wird ebenfalls getestet, sowie die Funktion des Switch nach einem solchen ungültigen Paket.  
+
+
+\subsection*{Processes}
+ \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a5e2335f6f6f0aa05413a0546a550ba71}\label{classtestbench_1_1testbench_a5e2335f6f6f0aa05413a0546a550ba71}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a5e2335f6f6f0aa05413a0546a550ba71}{osc}}{\bfseries  (  )}
+\begin{DoxyCompactList}\small\item\em osc\+: Taktgenerator \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a77eeaf075b0fe111c4550ccc6850feb4}\label{classtestbench_1_1testbench_a77eeaf075b0fe111c4550ccc6850feb4}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a77eeaf075b0fe111c4550ccc6850feb4}{Waveforms}}{\bfseries  (  )}
+\begin{DoxyCompactList}\small\item\em Waveforms\+: Generiert Testinputs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Constants}
+ \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}\label{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a5bae344c2dded33b0445c1ff826c362b}{T}} {\bfseries \textcolor{comment}{time}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{10} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ns}\textcolor{vhdlchar}{ }} 
+\begin{DoxyCompactList}\small\item\em Zeitkonstante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+ \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}\label{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_aef9e5d357c71aa9bf90bce64f14e42e6}{clk}} {\bfseries \textcolor{comment}{std\+\_\+logic}\textcolor{vhdlchar}{ }} 
+\begin{DoxyCompactList}\small\item\em Takt. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}\label{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_ab877db3d02ce28170f2d584ba57044e5}{test\+\_\+in}} {\bfseries \textcolor{comment}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{W\+I\+D\+TH}}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\begin{DoxyCompactList}\small\item\em Eingang. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}\label{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\+\_\+out}} {\bfseries {\bfseries \mbox{\hyperlink{classswitch__constants_ab8800f6bfb13a05fb4b8f9cf70129f9a}{std\+\_\+logic\+\_\+array}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{to}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a5d5b54efad1e67dd67aa312c28ef5cae}{N\+U\+M\+\_\+\+O\+U\+T\+P\+U\+TS}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\begin{DoxyCompactList}\small\item\em Ausgänge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a58875d3b002699f09aee4f696fb50c01}\label{classtestbench_1_1testbench_a58875d3b002699f09aee4f696fb50c01}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a58875d3b002699f09aee4f696fb50c01}{out1}} {\bfseries \textcolor{comment}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{W\+I\+D\+TH}}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\+\_\+out}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_adfb99f229830bb9a793890450d802b14}\label{classtestbench_1_1testbench_adfb99f229830bb9a793890450d802b14}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_adfb99f229830bb9a793890450d802b14}{out2}} {\bfseries \textcolor{comment}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{W\+I\+D\+TH}}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\+\_\+out}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{2} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a2b2cee80cb346423f7205d65c031ef0e}\label{classtestbench_1_1testbench_a2b2cee80cb346423f7205d65c031ef0e}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a2b2cee80cb346423f7205d65c031ef0e}{out3}} {\bfseries \textcolor{comment}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{W\+I\+D\+TH}}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\+\_\+out}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{3} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_a95124e3913557945b5575d717034c3c5}\label{classtestbench_1_1testbench_a95124e3913557945b5575d717034c3c5}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_a95124e3913557945b5575d717034c3c5}{out4}} {\bfseries \textcolor{comment}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{W\+I\+D\+TH}}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{keywordflow}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \mbox{\hyperlink{classtestbench_1_1testbench_a84b7e5be27961605265bd7b1515e28c7}{test\+\_\+out}}} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{4} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} 
+\end{DoxyCompactItemize}
+\subsection*{Instantiations}
+ \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtestbench_1_1testbench_aa7080d83399ba6d9a1d5f4ac0034a110}\label{classtestbench_1_1testbench_aa7080d83399ba6d9a1d5f4ac0034a110}} 
+\mbox{\hyperlink{classtestbench_1_1testbench_aa7080d83399ba6d9a1d5f4ac0034a110}{sw}}  {\bfseries switch}   
+\end{DoxyCompactItemize}
+
+
+\subsection{Ausführliche Beschreibung}
+Testbench architecture Mit dieser Testbench wird der Switch getestet. Es werden alle Ausgänge einzeln getestet, sowie ein Broadcast. Ein Paket mit ungültiger Adresse wird ebenfalls getestet, sowie die Funktion des Switch nach einem solchen ungültigen Paket. 
+
+Definiert in Zeile \mbox{\hyperlink{testbench_8vhd_source_l00032}{32}} der Datei \mbox{\hyperlink{testbench_8vhd_source}{testbench.\+vhd}}.
+
+
+
+Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Datei\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/fh/fpga/switch/switch.\+srcs/sim\+\_\+1/new/\mbox{\hyperlink{testbench_8vhd}{testbench.\+vhd}}\end{DoxyCompactItemize}

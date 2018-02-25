@@ -1,0 +1,24 @@
+\hypertarget{constants_8vhd_source}{}\section{constants.\+vhd}
+\label{constants_8vhd_source}\index{C\+:/fh/fpga/switch/switch.\+srcs/sources\+\_\+1/new/constants.\+vhd@{C\+:/fh/fpga/switch/switch.\+srcs/sources\+\_\+1/new/constants.\+vhd}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{----------------------------------------------------------------------------------}
+00007 \textcolor{keyword}{----------------------------------------------------------------------------------}
+00008 
+00009 
+00010 \textcolor{vhdlkeyword}{library }\textcolor{keywordflow}{IEEE};
+00011 \textcolor{vhdlkeyword}{use }\mbox{\hyperlink{classtestbench_ae4f03c286607f3181e16b9aa12d0c6d4}{IEEE}}.STD\_LOGIC\_1164.\textcolor{keywordflow}{ALL};
+00012 
+\Hypertarget{constants_8vhd_source_l00013}\mbox{\hyperlink{classswitch__constants}{00013}} \textcolor{keywordflow}{package }\mbox{\hyperlink{classswitch__constants}{switch\_constants}} \textcolor{keywordflow}{is}
+00014 
+\Hypertarget{constants_8vhd_source_l00015}\mbox{\hyperlink{classswitch__constants_a5d5b54efad1e67dd67aa312c28ef5cae}{00015}}     \textcolor{keywordflow}{constant} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a5d5b54efad1e67dd67aa312c28ef5cae}{NUM\_OUTPUTS}}}\textcolor{vhdlchar}{:} \textcolor{comment}{integer} \textcolor{vhdlchar}{:=} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{4};
+\Hypertarget{constants_8vhd_source_l00016}\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{00016}}     \textcolor{keywordflow}{constant} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{:} \textcolor{comment}{integer} \textcolor{vhdlchar}{:=} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{8};
+00017     
+\Hypertarget{constants_8vhd_source_l00018}\mbox{\hyperlink{classswitch__constants_a13406e763e8cb4595ff53ddecd6c40f2}{00018}}     \textcolor{keywordflow}{constant} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a13406e763e8cb4595ff53ddecd6c40f2}{PKT\_LEN}}}\textcolor{vhdlchar}{:} \textcolor{comment}{integer} \textcolor{vhdlchar}{:=} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{20};
+\Hypertarget{constants_8vhd_source_l00019}\mbox{\hyperlink{classswitch__constants_a15a8d4adaa5b58dfc565f1accbac8505}{00019}}     \textcolor{keywordflow}{constant} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_a15a8d4adaa5b58dfc565f1accbac8505}{PAUSE\_LEN}}}\textcolor{vhdlchar}{:} \textcolor{comment}{integer} \textcolor{vhdlchar}{:=} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{10};
+00020     
+\Hypertarget{constants_8vhd_source_l00022}\mbox{\hyperlink{classswitch__constants_ab8800f6bfb13a05fb4b8f9cf70129f9a}{00022}}     \textcolor{keywordflow}{type} \textcolor{vhdlchar}{\mbox{\hyperlink{classswitch__constants_ab8800f6bfb13a05fb4b8f9cf70129f9a}{std\_logic\_array}}} \textcolor{keywordflow}{is} \textcolor{keywordflow}{array}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{positive} \textcolor{keywordflow}{range} \textcolor{vhdlchar}{<}\textcolor{vhdlchar}{>}\textcolor{vhdlchar}{)} \textcolor{keywordflow}{of} \textcolor{comment}{std\_logic\_vector}\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{
+      \mbox{\hyperlink{classswitch__constants_a61f3545de1fd97e083485647537d2a2d}{WIDTH}}}\textcolor{vhdlchar}{-}\textcolor{vhdllogic}{}\textcolor{vhdllogic}{1} \textcolor{keywordflow}{downto} \textcolor{vhdllogic}{}\textcolor{vhdllogic}{0}\textcolor{vhdlchar}{)};
+00023 
+00024 \textcolor{keywordflow}{end} \textcolor{vhdlchar}{switch\_constants};
+\end{DoxyCode}
